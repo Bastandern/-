@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个性化校园卡定制</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="main-header">
+        <h1>个性化校园卡定制</h1>
+    </header>
+    <main class="container">
+        <section class="card-preview">
+            <h2>实时预览</h2>
+            <div class="card-container">
+                <div id="campus-card">
+                    <div class="card-inner">
+                        <div class="card-face card-front">
+                            <div class="card-top">
+                                <img src="images/logo.jpg" class="card-logo" alt="校徽">
+                                <div class="university-block">
+                                    <p class="university-name">大学名称</p>
+                                    <p class="university-name-en">大学名称（英文）</p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <img src="images/profile.png" class="card-photo" alt="证件照">
+                                <div class="card-info">
+                                    <div class="info-item name-item">
+                                        <span class="info-label">姓名</span>
+                                        <p class="name">学生姓名</p>
+                                    </div>
+                                    <div class="info-item id-item">
+                                        <span class="info-label">学号</span>
+                                        <p class="id">学号</p>
+                                    </div>
+                                    <div class="info-item department-item">
+                                        <span class="info-label">院系/专业</span>
+                                        <p class="department">院系/专业</p>
+                                    </div>
+                                    <div class="info-item category-item">
+                                        <span class="info-label">类别</span>
+                                        <p class="category">本科生</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card-footer">
+                                <div class="info-item issue-date-item">
+                                    <span class="info-label">签发日期</span>
+                                    <p class="issue-date">YYYY/MM/DD</p>
+                                </div>
+                                <div class="info-item expiry-date-item">
+                                    <span class="info-label">有效期至</span>
+                                    <p class="expiry-date">YYYY/MM/DD</p>
+                                </div>
+                            </div>
+                        </div> <div class="card-face card-back">
+                            
+                            <div class="back-content">
+                                <h3>使用须知</h3>
+                                <p>1. 此卡仅限本人使用。<br>2. 请勿弯折、涂改、损坏芯片。<br>3. 如有遗失，请立即挂失。</p>
+                            </div>
+                            
+                            <div class="barcode-container">
+                                <img src="https://barcode.tec-it.com/barcode.ashx?data=2023210000&code=Code128&dpi=96&fgcolor=0056b3" alt="条形码">
+                            </div>
+                        </div> </div> </div> </div> </section> <aside class="controls">
+            <h3>自定义你的卡片</h3>
+            <form>
+                <div class="form-group">
+                    <label for="university-input">大学名称:</label>
+                    <input type="text" id="university-input" value="北京邮电大学">
+                </div>
+                <div class="form-group">
+                    <label for="university-en-input">大学名称（英文）:</label>
+                    <input type="text" id="university-en-input" value="Beijing University of Posts and Telecommunications">
+                </div>
+                <div class="form-group">
+                    <label for="name-input">学生姓名:</label>
+                    <input type="text" id="name-input" value="张三">
+                </div>
+                <div class="form-group">
+                    <label for="id-input">学号:</label>
+                    <input type="text" id="id-input" value="2023210001">
+                </div>
+                <div class="form-group">
+                    <label for="department-input">院系/专业:</label>
+                    <input type="text" id="department-input" value="网络空间安全学院">
+                </div>
+                <div class="form-group">
+                    <label for="category-input">类别:</label>
+                    <select id="category-input">
+                        <option value="本科生" selected>本科生</option>
+                        <option value="研究生">研究生</option>
+                    </select>
+                </div>
+                
+                <div class="form-group form-group-inline">
+                    <div>
+                        <label for="issue-date-input">签发日期:</label>
+                        <input type="date" id="issue-date-input" value="2023-09-01">
+                    </div>
+                    <div>
+                        <label for="expiry-date-input">有效期至:</label>
+                        <input type="date" id="expiry-date-input" value="2027-07-01">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="photo-upload">上传个人照片:</label>
+                    <input type="file" id="photo-upload" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label for="logo-upload">上传学校Logo:</label>
+                    <input type="file" id="logo-upload" accept="image/*">
+                </div>
+            </form>
+        </aside> </main> <footer class="main-footer">
+        <p>&copy; Bastandern</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    
+</body>
+</html>

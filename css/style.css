@@ -1,0 +1,380 @@
+@font-face {
+  font-family: 'ZhongQiMangXing';
+  src: url('../fonts/钟齐志莽行书.ttf') format('truetype');
+}
+
+:root {
+    /* -- 颜色 (Colors) -- */
+    --color-primary: #0056b3;        /* 主题蓝 (用于标题、焦点) */
+    --color-bg-page: #f4f7f9;        /* 页面背景灰 */
+    --color-bg-light: #fff;          /* 卡片/控件背景白 */
+    --color-text-body: #333;         /* 主体文字 (深灰) */
+    --color-text-secondary: #555;    /* 次要文字 (中灰) */
+    --color-text-tertiary: #888;     /* 标签文字 (浅灰) */
+    --color-border-light: #eef;      /* 标题下划线 */
+    --color-border-medium: #eee;     /* 卡片内边框/照片边框 */
+    --color-border-dark: #ccc;       /* 表单边框 */
+    
+    /* -- 渐变 (Gradients) -- */
+    --gradient-brand: linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335);
+
+    /* -- 字体 (Fonts) -- */
+    --font-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-custom: 'ZhongQiMangXing', var(--font-system);
+    
+    /* -- 尺寸 (Sizing & Spacing) -- */
+    --card-width: 30em;
+    --card-height: 19em;
+    --radius-card: 15px;             /* 卡片圆角 */
+    --radius-image: 8px;             /* 照片圆角 */
+    --radius-form: 5px;              /* 表单圆角 */
+    
+    /* -- 响应式断点 (Breakpoints) -- */
+    --breakpoint-medium: 60em;
+    --breakpoint-small: 32em;
+}
+
+
+/* 全局样式 */
+body {
+    font-family: var(--font-system);
+    background-color: var(--color-bg-page);
+    margin: 0;
+    color: var(--color-text-body);
+    line-height: 1.6;
+    min-width: var(--breakpoint-small);
+}
+
+/* 头部样式 */
+.main-header {
+    background-color: var(--color-bg-light);
+    padding: 1em 2em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.main-header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: var(--color-primary);
+}
+
+/* 主容器布局 (Flexbox) */
+.container {
+    display: flex;
+    padding: 2em;
+    gap: 2em;
+}
+
+.card-preview {
+    flex: 1; /* 左栏 */
+}
+
+.controls {
+    flex: 1; /* 右栏 */
+    background-color: var(--color-bg-light);
+    padding: 2em;
+    border-radius: var(--radius-image);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+h2, h3 {
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-border-light);
+    padding-bottom: 0.5em;
+    margin-top: 0;
+}
+
+/* 3D 舞台 */
+.card-container {
+    perspective: 1200px;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+/* 卡片尺寸 */
+#campus-card {
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    margin: 0 auto;
+}
+
+/* 翻转内层 */
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+    transform-origin: center center;
+}
+
+/* 悬停时触发翻转 */
+.card-container:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* 卡片正反面通用样式 */
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: var(--radius-card);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    background-color: var(--color-bg-light);
+    color: var(--color-text-body);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* 卡片正面 */
+.card-front {
+    padding: 1em;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 顶部彩色条 */
+.card-front::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: var(--gradient-brand);
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
+}
+
+.card-logo {
+    width: 3.5em;
+    height: 3.5em;
+    margin-right: 1em;
+    object-fit: contain;
+}
+
+.university-block {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.university-name {
+    font-size: 1.75em;
+    font-weight: normal;
+    margin: 0;
+    color: var(--color-primary); 
+    font-family: var(--font-custom);
+}
+
+.university-name-en {
+    margin: 0;
+    font-size: 0.5em;
+    color: var(--color-text-secondary);
+    line-height: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+}
+
+.card-photo {
+    width: 7em;
+    height: 9em;
+    border: 3px solid var(--color-border-medium);
+    object-fit: cover;
+    margin-right: 1.5em;
+    border-radius: var(--radius-image);
+}
+
+/* 个人信息 (Grid 布局) */
+.card-info {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+    gap: 1em;
+}
+
+.info-label {
+    display: block;
+    font-size: 0.8em;
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+}
+
+.info-item p {
+    margin: 0.1em 0 0 0;
+    font-size: 1.1em;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.info-item.name-item p {
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+/* 卡片底部 (日期) */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    align-items: flex-start;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+    border-top: 1px solid var(--color-border-medium);
+}
+
+.card-footer .info-item p {
+    font-size: 1em;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
+}
+
+/* 卡片背面 */
+.card-back {
+    transform: rotateY(180deg);
+    padding: 1em;
+    justify-content: space-between; 
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    /* 定义水印背景的 CSS 变量 */
+    --card-watermark-bg: url('../images/logo.jpg');
+}
+
+/* 背面水印 (使用 CSS 变量) */
+.card-back::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--card-watermark-bg);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.12;
+    pointer-events: none;
+    top: 10px;
+}
+
+/* 顶部彩色条 */
+.card-back::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: var(--gradient-brand); 
+}
+
+.back-content {
+    position: relative;
+    z-index: 1; /* 确保在水印之上 */
+    margin-top: 3em;
+}
+
+.back-content h3 {
+    margin-top: 0;
+    color: var(--color-primary);
+}
+
+/* 条形码 */
+.barcode-container {
+    position: relative;
+    z-index: 1;
+    width: 80%;
+    margin-bottom: 0.5em;
+}
+
+.barcode-container img {
+    width: 100%;
+    height: 3em;
+    object-fit: cover;
+}
+
+/* 表单控件 (Controls) */
+.form-group {
+    margin-bottom: 1.5em;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    color: var(--color-text-secondary);
+}
+
+/* 统一定义所有输入框样式 */
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group select {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid var(--color-border-dark);
+    border-radius: var(--radius-form);
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    background-color: var(--color-bg-light);
+    font-family: inherit;
+    font-size: 1em;
+}
+
+/* 焦点样式 */
+.form-group input[type="text"]:focus,
+.form-group input[type="date"]:focus,
+.form-group select:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+/* 内联表单组 (用于日期) */
+.form-group-inline {
+    display: flex;
+    gap: 1em;
+}
+
+.form-group-inline > div {
+    flex: 1;
+}
+
+input[type="file"] {
+    border: 1px solid var(--color-border-dark);
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: var(--radius-form);
+}
+
+.main-footer {
+    text-align: center;
+    padding: 2em;
+    margin-top: 2em;
+    color: var(--color-text-tertiary);
+}
+
+/* 响应式媒体查询 */
+@media (max-width: var(--breakpoint-medium)) {
+        .container {
+        flex-direction: column;
+    }
+}
